@@ -51,7 +51,7 @@ function gutentest_register_block() {
     wp_register_script(
         "gutentest-block-handler",
         GTN_BUILD . "index.js",
-        ["wp-blocks", "wp-element"]
+        ["wp-blocks", "wp-element", "wp-editor"]
     );
     
     register_block_type(

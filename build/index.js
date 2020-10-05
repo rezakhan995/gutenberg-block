@@ -99,6 +99,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 
 var registerBlockType = wp.blocks.registerBlockType;
+var RichText = wp.editor.RichText;
 var el = wp.element.createElement; //register a block
 
 registerBlockType("gutentest-block/text", //slug of block
@@ -108,31 +109,57 @@ registerBlockType("gutentest-block/text", //slug of block
   category: 'common',
   icon: "format-image",
   attributes: {
-    author: {
+    title: {
       type: "string",
       source: "html",
       selector: "h2"
+    },
+    body: {
+      type: "string",
+      source: "html",
+      selector: "p"
     }
   },
   edit: function edit(_ref) {
     var attributes = _ref.attributes,
         setAttributes = _ref.setAttributes;
+    var title = attributes.title,
+        body = attributes.body;
 
-    function updateMethod(event) {
+    function onChangeTitle(title) {
       setAttributes({
-        author: event.target.value
+        title: title
       });
     }
 
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-      type: "text",
-      value: attributes.author,
-      onChange: updateMethod
-    });
+    function onChangeBody(details) {
+      setAttributes({
+        body: details
+      });
+    }
+
+    return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+      key: "editable",
+      tagName: "h2",
+      placeholder: "Title Here",
+      value: title,
+      onChange: onChangeTitle
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+      key: "editable",
+      tagName: "p",
+      placeholder: "Details Here",
+      value: body,
+      onChange: onChangeBody
+    }))];
   },
   save: function save(_ref2) {
     var attributes = _ref2.attributes;
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "Author Name: ", attributes.author);
+    var title = attributes.title,
+        body = attributes.body;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, title), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+      tagName: "p",
+      value: body
+    }));
   }
 });
 

@@ -60,6 +60,12 @@ function gutentest_register_block() {
             "editor_script" => "gutentest-block-handler",
         ]
     );
+    register_block_type(
+        "gutentest-block/newsletter",
+        [
+            "editor_script" => "gutentest-block-handler",
+        ]
+    );
 }
 add_action( "init", "gutentest_register_block" );
 add_action( "init", "gutentest_override_gutenberg_colors" );

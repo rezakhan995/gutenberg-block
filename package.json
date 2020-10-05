@@ -1,0 +1,20 @@
+{
+  "name": "gutenberg-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "demo gutenberg block plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:scripts": "wp-scripts build",
+    "start-build": "wp-scripts start"
+  },
+  "keywords": [
+    "gutenberg"
+  ],
+  "author": "Reza Khan",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@wordpress/scripts": "^12.2.1"
+  }
+}
